@@ -1,0 +1,28 @@
+.grid {
+    display: flex;
+    flex-wrap: wrap;
+    
+    width: 900px;
+    margin: auto;
+}
+
+.header{
+    display: inline-block;
+    vertical-align: middle;
+    margin: 20px;
+
+}
+
+.center{
+    display: flex;
+    margin: auto;
+}
+
+.currentPlayer{
+    background-color: black;
+    color: white;
+}
+
+img{
+    margin: 10px;
+}

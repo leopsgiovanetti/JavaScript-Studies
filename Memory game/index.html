@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory Game</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <script src="app.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="display-1"> MEMORY GAME </h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <section class="center">
+                    <form>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h3 class="lead"> GAME OPTIONS</h3>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p>LEVEL</p>
+                                <input class="options" type="radio" id="easy" name="level" value="6" required>
+                                <label for="easy">EASY</label><br>
+                                <input class="options" type="radio" id="medium" name="level" value="10">
+                                <label for="medium">MEDIUM</label><br>
+                                <input class="options" type="radio" id="hard" name="level" value="14">
+                                <label for="hard">HARD</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>PLAYERS</p>
+                                <input class="options" id="players" type="number" max="5" min="1" value="0" required>
+                                <br><br>
+                                <button class="options" id="start"> Start Game</button>
+                            </div>
+                        </div>
+                    </form>
+                </section>
+            </div>
+
+            <div class="col-md-6">
+                <div id="scoreboard">
+                    <h3 class="lead"> SCOREBOARD </h3>
+            
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="grid">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+
+    
+
+
+</body>
+</html>
