@@ -1,0 +1,44 @@
+.container{
+    background-color: black;
+    display: flex ;
+    max-width: 600px;
+    
+}
+.main{
+    display: inline-block;
+}
+
+.support{
+    display: flex ;
+    flex-direction: column;
+}
+
+.canvas{
+    background-color: gray;
+    margin: 10px;
+
+}
+
+.score{
+    text-align: center;
+    display: inline-block;
+    color: white;
+    margin:10px;
+}
+
+#nextBlock{
+    background-color: gray;
+    margin: 10px;
+}
+#startGame{
+
+    margin: 20px;
+}
+
+
+.next-block{
+    text-align: center;
+    
+    color: white;
+
+}
