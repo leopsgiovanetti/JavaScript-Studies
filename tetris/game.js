@@ -1,9 +1,6 @@
 const start = document.getElementById('startGame')
 start.addEventListener('click', startGame)
 
-const pause = document.getElementById('pause')
-pause.addEventListener('click', pauseGame)
-
 const unit = 20;
 const mainCanvas = document.getElementById('canvas');
 const nextBlockCanvas = document.getElementById('nextBlock');
