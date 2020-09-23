@@ -85,15 +85,7 @@ function startGame(){
 }
 
 
-function pauseGame(){
-    if(block.speed === 0){
-        block.speed = unit;
-    }
-    else{
-        block.ySpeed = 0;
-    }
-    
-}
+
 
 function drawSurface(){
     ctx.fillStyle = "white";
