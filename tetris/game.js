@@ -1,5 +1,9 @@
 const start = document.getElementById('startGame')
 start.addEventListener('click', startGame)
+
+const pause = document.getElementById('pause')
+pause.addEventListener('click', pauseGame)
+
 const unit = 20;
 const mainCanvas = document.getElementById('canvas');
 const nextBlockCanvas = document.getElementById('nextBlock');
@@ -38,11 +42,17 @@ function startGame(){
     interval = setInterval(
         function(){
             //update block
-            console.log('time')
+            // console.log('time')
             block.update()
             if(block.ySpeed === 0){
+                
                 for(let i = 0; i < 4 ; i++){
-                    surface.push(block.coord[i])
+                    if(surface.findIndex(elm => elm.x === block.coord[i].x 
+                        && elm.y === block.coord[i].y) === -1){
+
+                            surface.push(block.coord[i])
+                        }
+                    
                 }
                 
                 (surface.sort(function(a, b){return a.x - b.x})).sort(function(a, b){return a.y - b.y})
@@ -64,14 +74,25 @@ function startGame(){
             nbCtx.fillStyle = nextBlock.color;
             nextBlock.drawNext()
             drawSurface()
-            console.log('check')
+            // console.log('check')
             //
             if (gameOver()){
                 clearInterval(interval)                
-                console.log('game over')
+                // console.log('game over')
             }
 
         },500)
+}
+
+
+function pauseGame(){
+    if(block.speed === 0){
+        block.speed = unit;
+    }
+    else{
+        block.ySpeed = 0;
+    }
+    
 }
 
 function drawSurface(){
@@ -105,14 +126,28 @@ function checkTetris(surface){
 
         
         if(counter === completeRow){            
-            tetris.push(rows);
-            // console.log(`tetris: ${tetris} row: ${rows}`);
+            tetris.push(rows);           
+            // console.log('pre')
+            // console.log(surface)
             surface.splice(surface.findIndex(a => (a.y === rows)),completeRow)
+            // console.log('pos')
+            // console.log(surface)
         }
+        
     }
 
-    for (let rows = firstRow; rows >= lastRow ; rows -= unit){
-        surface.forEach(a =>{if(a.y < rows){a.y += unit * tetris.length}})
+    // console.log('tetris')
+    // console.log(tetris)
+
+    for (let rows = tetris[0]; rows >= lastRow ; rows -= unit){
+        let tetrisBelow;
+        if(tetris.findIndex(a => a < rows) === -1){
+            tetrisBelow = tetris.length;
+        }
+        else{
+            tetrisBelow = tetris.findIndex(a => a < rows) - 1
+        }
+        surface.forEach(a =>{if(a.y === rows){a.y += unit * tetrisBelow}})
     }
 
     
