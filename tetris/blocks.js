@@ -37,10 +37,15 @@ class Block{
         switch (direction) {
             case 'Right':
                 // console.log(Math.max(...this.coord.map(a => a.x)))
-                if(Math.max(...this.coord.map(a => a.x)) < mainCanvas.width - unit){
-                    this.x += unit;
-                    for(let i = 0; i < 4; i++){
-                        this.coord[i].x += unit; 
+              
+                if( Math.max(...this.coord.map(a => a.x)) < mainCanvas.width - unit){
+                    
+                    if(!rightCollision(this,surface)){
+                        this.x += unit;
+                    
+                        for(let i = 0; i < 4; i++){
+                            this.coord[i].x += unit; 
+                        }
                     }
                 }                
 
@@ -49,10 +54,11 @@ class Block{
             case 'Left':
                 // console.log(Math.min(...this.coord.map(a => a.x)))
                 if(Math.min(...this.coord.map(a => a.x)) > 0){
-                    
-                    this.x -= unit;
-                    for(let i = 0; i < 4; i++){
-                        this.coord[i].x -= unit; 
+                    if(!leftCollision(this,surface)){  
+                        this.x -= unit;
+                        for(let i = 0; i < 4; i++){
+                            this.coord[i].x -= unit; 
+                        }
                     }
                 }
                 break;
@@ -179,7 +185,8 @@ function collision(block, surface){
 
     for(let i = 0; i < block.coord.length ; i++){
         for(let j = 0; j < surface.length; j++){ //tá horrivel isso! pensar em solução melhor
-            if(block.coord[i].x === surface[j].x && block.coord[i].y === surface[j].y - unit){
+            if(block.coord[i].x === surface[j].x && block.coord[i].y === surface[j].y - unit ||
+                block.coord[i].y === surface[j].y && block.coord[i].x === surface[j].x){
                 // console.log(`collision at ${i}: ${block.coord[i].x}  and ${j}: ${block.coord[i].y}, ${surface[j].y - unit} `)
                 
                 return true;
@@ -189,6 +196,37 @@ function collision(block, surface){
     }
     return false
 }
+
+function rightCollision(block, surface){
+
+    for(let i = 0; i < block.coord.length ; i++){
+        for(let j = 0; j < surface.length; j++){ //tá horrivel isso! pensar em solução melhor
+            if(block.coord[i].y === surface[j].y && block.coord[i].x === surface[j].x - unit){
+                // console.log(`collision at ${i}: ${block.coord[i].x}  and ${j}: ${block.coord[i].y}, ${surface[j].y - unit} `)
+                
+                return true;
+                        
+            }
+        }        
+    }
+    return false
+}
+
+function leftCollision(block, surface){
+
+    for(let i = 0; i < block.coord.length ; i++){
+        for(let j = 0; j < surface.length; j++){ //tá horrivel isso! pensar em solução melhor
+            if(block.coord[i].y === surface[j].y && block.coord[i].x === surface[j].x + unit){
+                // console.log(`collision at ${i}: ${block.coord[i].x}  and ${j}: ${block.coord[i].y}, ${surface[j].y - unit} `)
+                
+                return true;
+                        
+            }
+        }        
+    }
+    return false
+}
+
 
 
 function callNextBlock(block,nextBlock){
